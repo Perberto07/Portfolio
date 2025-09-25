@@ -1,16 +1,7 @@
-﻿
-
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
-
-type Weather = {
-    temperature: number;
-    windspeed: number;
-    weathercode?: number;
-};
-
 export default function WeatherWidget() {
-    const [weather, setWeather] = useState<Weather | null>(null);
+    const [weather, setWeather] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -25,7 +16,7 @@ export default function WeatherWidget() {
                         `https://ac2abf6b2d30.ngrok-free.app/api/weather/current?lat=${lat}&lon=${lon}`
                     );
                     const data = await res.json();
-                    setWeather(data.current_weather); // matches Weather type
+                    setWeather(data.current_weather);
                 } catch (error) {
                     console.error("Weather fetch failed:", error);
                 } finally {
@@ -51,5 +42,5 @@ export default function WeatherWidget() {
             )}
         </div>
     );
-}
 
+}
