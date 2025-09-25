@@ -22,7 +22,12 @@ export default function WeatherWidget() {
 
                     const res = await fetch(
                         //`https://localhost:7295/api/weather/current?lat=${lat}&lon=${lon}`
-                        `https://a3467ca03cff.ngrok-free.app/api/weather/current?lat=${lat}&lon=${lon}`
+                        `https://a3467ca03cff.ngrok-free.app/api/weather/current?lat=${lat}&lon=${lon}`,
+                        {
+                            headers: {
+                                "ngrok-skip-browser-warning": "true",
+                            },
+                        }
                     );
                     const data = await res.json();
                     setWeather(data.current_weather); // matches Weather type
