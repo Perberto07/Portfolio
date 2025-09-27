@@ -21,13 +21,7 @@ export default function WeatherWidget() {
                     const lon = pos.coords.longitude;
 
                     const res = await fetch(
-                        //`https://localhost:7295/api/weather/current?lat=${lat}&lon=${lon}`
-                        `https://a3467ca03cff.ngrok-free.app/api/weather/current?lat=${lat}&lon=${lon}`,
-                        {
-                            headers: {
-                                "ngrok-skip-browser-warning": "true",
-                            },
-                        }
+                        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
                     );
                     const data = await res.json();
                     setWeather(data.current_weather); // matches Weather type
