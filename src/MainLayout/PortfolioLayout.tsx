@@ -21,7 +21,7 @@ function PortfolioLayout() {
 
                 {/* Main content wrapper */}
                 <div
-                    className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? "ml-64" : "ml-0"
+                    className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? "ml-59" : "ml-0"
                         }`}
                 >
                     <Header onSidebarToggle={() => setSidebarOpen((open) => !open)} />
