@@ -6,6 +6,7 @@ export default function CreateProjectPage() {
     const [project, setProject] = useState<CreateProjectDto>({
         title: "",
         description: "",
+        videoLink: "",
         techStacks: [],
     });
 
@@ -25,7 +26,7 @@ export default function CreateProjectPage() {
             const result = await createProject(project);
             alert("Project created successfully!");
             console.log(result);
-            setProject({ title: "", description: "", techStacks: [] }); // reset
+            setProject({ title: "", description: "", videoLink:"", techStacks: [] }); // reset
         } catch (error) {
             alert("Failed to create project.");
             console.error(error);
@@ -51,6 +52,13 @@ export default function CreateProjectPage() {
                 onChange={(e) =>
                     setProject({ ...project, description: e.target.value })
                 }
+            />
+            <input
+                className="border p-2 w-full mb-3"
+                type="text"
+                placeholder="Project Video Link"
+                value={project.videoLink}
+                onChange={(e) => setProject({ ...project, videoLink: e.target.value })}
             />
 
             <div className="border p-3 mb-4">

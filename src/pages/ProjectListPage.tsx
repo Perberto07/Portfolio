@@ -15,6 +15,18 @@ export default function ProjectListPage() {
         setIsModalOpen(true);
     };
 
+    const getYoutubeEmbedUrl = (url: string): string => {
+        if (!url) return "";
+
+        if (url.includes("youtu.be/")) {
+            return url.replace("youtu.be/", "www.youtube.com/embed/");
+        }
+        if (url.includes("watch?v=")) {
+            return url.replace("watch?v=", "embed/");
+        }
+        return url; // fallback
+    };  
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
@@ -43,6 +55,13 @@ export default function ProjectListPage() {
                                         {project.title}
                                     </h3>
                                 </div>
+                                <iframe
+                                    className="w-full h-48 rounded-lg"
+                                    src={getYoutubeEmbedUrl(project.videoLink)}
+                                    title={project.title}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                ></iframe>
 
                                 {/* Description */}
                                 <p className="text-gray-600 mb-6 leading-relaxed line-clamp-3 text-sm">

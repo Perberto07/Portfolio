@@ -6,6 +6,7 @@ export interface TechStackDto {
 export interface CreateProjectDto {
     title: string;
     description: string;
+    videoLink: string;
     techStacks: TechStackDto[];
 }
 
@@ -17,5 +18,6 @@ export interface GetTechStackDto {
 export interface GetProjectDto {
     title: string;
     description: string;
+    videoLink: string;
     techStacks: GetTechStackDto[];
 }

@@ -3,27 +3,30 @@ import WeatherWidget from "../components/Widgets/WeatherWidget";
 
 function Header({ onSidebarToggle }: { onSidebarToggle: () => void }) {
     return (
-        <header className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 text-white shadow-lg relative overflow-hidden">
-            {/* Subtle background pattern */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-transparent"></div>
-            <div className="absolute top-0 right-0 w-96 h-32 bg-gradient-to-l from-white/5 to-transparent rounded-full -translate-y-16 translate-x-32"></div>
-            <div className="container mx-auto px-6 py-5 relative z-10">
+        <header className="bg-white shadow-md relative overflow-hidden">
+            {/* Subtle gradient background overlay */}
+            {/*<div className="absolute inset-0 bg-gradient-to-r from-blue-100/40 to-transparent"></div>*/}
 
+            <div className="container mx-auto px-10 py-4 relative z-10">
                 <div className="flex items-center justify-between">
 
-                    {/* Sidebar Toggle Button */}
-                    
-
-                    {/* Logo / Title */}
+                    {/* Sidebar Toggle + Logo/Title */}
                     <div className="flex items-center gap-3">
-                        <Menu size={25} color="#3338A0" onClick={onSidebarToggle} className="ml-2" />
-                        <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                        <button
+                            onClick={onSidebarToggle}
+                            className="p-2 rounded-lg hover:bg-blue-100 transition"
+                        >
+                            <Menu size={24} className="text-blue-700" />
+                        </button>
+                        <h3 className="text-xl md:text-2xl font-bold text-blue-800">
                             Junior Developer
                         </h3>
                     </div>
 
-                    <WeatherWidget />
-
+                    {/* Weather Widget */}
+                    <div className="hidden sm:block">
+                        <WeatherWidget />
+                    </div>
                 </div>
             </div>
         </header>

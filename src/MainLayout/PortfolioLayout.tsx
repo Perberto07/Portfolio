@@ -35,7 +35,6 @@ function PortfolioLayout() {
                             </Route>
                         </Routes>
                     </div>
-                    <Footer />
                 </div>
             </div>
         </div>

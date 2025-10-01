@@ -39,14 +39,14 @@ export default function WeatherWidget() {
     return (
         <div className="flex items-center gap-3 px-3 py-1.5 bg-white/10 rounded-full backdrop-blur-sm border border-white/20 text-sm text-blue-50">
             {loading ? (
-                <Loader2 size={14} className="animate-spin text-blue-100" />
+                <Loader2 size={14} className="animate-spin text-blue-900" />
             ) : weather ? (
                 <div className="flex items-center gap-2">
-                    <span>🌥️ {weather.temperature}°C</span>
-                    <span className="text-xs text-blue-200">💨 {weather.windspeed} km/h</span>
+                    <span className="text-xs text-blue-900">🌥️ {weather.temperature}°C</span>
+                    <span className="text-xs text-blue-900">💨 {weather.windspeed} km/h</span>
                 </div>
             ) : (
-                <span className="text-xs text-blue-200">No data</span>
+                <span className="text-xs text-blue-900">No data</span>
             )}
         </div>
     );
