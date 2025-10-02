@@ -1,7 +1,8 @@
 import axios from "axios"; // Removed AxiosError
 import type { AuthResponseDto, LoginDto, RegisterDto } from "../dtos/auth.dto";
 
-const API_URL = "https://localhost:7295/api/Auth";
+const API_URL = "https://fullporfolio.onrender.com/api/Auth";
+//const API_URL = "https://localhost:7295/api/Auth";
 
 export const registerUser = async (data: RegisterDto): Promise<AuthResponseDto> => {
     try {
