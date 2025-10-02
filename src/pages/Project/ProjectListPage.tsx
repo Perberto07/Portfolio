@@ -1,8 +1,8 @@
-import type { GetProjectDto } from "../dtos/project.dto";
-import { getProjects } from "../services/projectService";
-import { useService } from "../hooks/UseService";
-import { Modal } from "../components/Modal/Modal"
 import { useState } from "react";
+import { Modal } from "../../components/Modal/Modal";
+import type { GetProjectDto } from "../../dtos/project.dto";
+import { useService } from "../../hooks/UseService";
+import { getProjects } from "../../services/projectService";
 
 export default function ProjectListPage() {
     const { data: projects, loading, error } = useService<GetProjectDto[]>(getProjects);
@@ -55,13 +55,24 @@ export default function ProjectListPage() {
                                         {project.title}
                                     </h3>
                                 </div>
-                                <iframe
-                                    className="w-full h-48 rounded-lg"
-                                    src={getYoutubeEmbedUrl(project.videoLink)}
-                                    title={project.title}
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                ></iframe>
+                                <div className="mb-4">
+                                    {getYoutubeEmbedUrl(project.videoLink) ? (
+                                        <iframe
+                                            className="w-full h-48 rounded-lg"
+                                            src={getYoutubeEmbedUrl(project.videoLink)}
+                                            title={project.title}
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                        ></iframe>
+                                    ) : (
+                                        <img
+                                            className="w-full h-48 object-cover rounded-lg"
+                                            src="/assets/images/P.png" // your placeholder image path
+                                            alt="No video available"
+                                        />
+                                    )}
+                                </div>
+
 
                                 {/* Description */}
                                 <p className="text-gray-600 mb-6 leading-relaxed line-clamp-3 text-sm">

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import type { CreateContentDto, ItemDto } from "../dtos/content.dto";
-import { createContent } from "../services/contentService";
+import type { CreateContentDto, ItemDto } from "../../dtos/content.dto";
+import { createContent } from "../../services/contentService";
 
 
 function CreateContentPage() {

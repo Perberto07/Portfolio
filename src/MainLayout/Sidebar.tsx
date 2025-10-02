@@ -1,6 +1,7 @@
-import { Home, User, FolderKanban, Newspaper, X, File, Github, Mail, Twitter } from "lucide-react";
+import { Home, User, FolderKanban, Newspaper, X, File, Github, Mail, Twitter, LogInIcon, FileCog, FolderCog, LogOutIcon } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import GradPic from "../assets/images/GradPic.JPG";
+import { useAuth } from "../components/Auth/AuthContext";
 
 interface SidebarProps {
     isOpen: boolean;
@@ -8,6 +9,8 @@ interface SidebarProps {
 }
 
 function Sidebar({ isOpen, onClose }: SidebarProps) {
+    const { isAuthenticated, logout } = useAuth();
+
     return (
         <aside
             className={`fixed top-0 left-0 h-full w-64 
@@ -15,7 +18,7 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
             shadow-2xl z-40 transition-transform duration-300 
             ${isOpen ? "translate-x-0" : "-translate-x-64"}`}
         >
-            {/* Close button (mobile only) */}
+            {/* Close button */}
             <X
                 size={30}
                 onClick={onClose}
@@ -31,7 +34,8 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
             </div>
 
             {/* Main Navigation */}
-            <nav className="flex flex-col gap-4 mt-12 px-6">
+            <nav className="flex flex-col mt-12 px-6">
+                {/* Regular links */}
                 <NavLink to="/" className="flex items-center gap-3 px-3 py-2 rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition">
                     <Home size={18} /> Home
                 </NavLink>
@@ -45,7 +49,7 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
                     <Newspaper size={18} /> News
                 </NavLink>
 
-                {/* Resume inside Nav */}
+                {/* Resume */}
                 <a
                     href="/assets/files/Resume_Update_09.pdf"
                     target="_blank"
@@ -54,6 +58,33 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
                 >
                     <File size={18} /> Resume
                 </a>
+
+                {/* Login link if not authenticated */}
+                {!isAuthenticated && (
+                    <NavLink to="/login" className="flex items-center gap-3 px-3 py-2 rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition">
+                        <LogInIcon size={18} /> Login
+                    </NavLink>
+                )}
+
+                {/* Admin section */}
+                {isAuthenticated && (
+                    <div className="mt-6">
+                        <h6 className="text-black/80 uppercase text-xs font-semibold mb-1 px-3">Admin</h6>
+                        <hr className="border-t border-blue-500 mb-2" />
+                        <NavLink to="/create-project" className="flex items-center gap-3 px-3 py-2 rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition">
+                            <FolderCog size={18} /> Create Project
+                        </NavLink>
+                        <NavLink to="/create-content" className="flex items-center gap-3 px-3 py-2 rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition">
+                            <FileCog size={18} /> Create Content
+                        </NavLink>
+                        <div
+                            onClick={logout}
+                            className="flex items-center gap-3 px-3 py-2 mt-2 rounded-lg text-blue-400 hover:text-blue hover:bg-blue/10 transition"
+                        >
+                            <LogOutIcon size={18} /> Logout
+                        </div>
+                    </div>
+                )}
             </nav>
 
             {/* Bottom Section */}
@@ -66,31 +97,13 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
 
                 {/* Social Icons */}
                 <div className="flex space-x-6 justify-center">
-                    <a
-                        href="https://twitter.com/yourusername"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-300 hover:text-white transition-colors"
-                    >
+                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                         <Twitter size={22} />
                     </a>
-
-                    <a
-                        href="https://mail.google.com/mail/?view=cm&fs=1&to=johnpatrickboleche@gmail.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-300 hover:text-white transition-colors"
-                        title="Email me"
-                    >
+                    <a href="mailto:johnpatrickboleche@gmail.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors" title="Email me">
                         <Mail size={22} />
                     </a>
-
-                    <a
-                        href="https://github.com/Perberto07"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-300 hover:text-white transition-colors"
-                    >
+                    <a href="https://github.com/Perberto07" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                         <Github size={22} />
                     </a>
                 </div>

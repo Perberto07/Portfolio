@@ -1,6 +1,7 @@
-﻿import type { GetContentDto } from "../dtos/content.dto";
-import { getContents } from "../services/contentService";
-import { useService } from "../hooks/UseService";
+﻿import type { GetContentDto } from "../../dtos/content.dto";
+import { useService } from "../../hooks/UseService";
+import { getContents } from "../../services/contentService";
+
 
 function ContentListPage() {
     const { data: contents, loading, error } = useService<GetContentDto[]>(getContents);

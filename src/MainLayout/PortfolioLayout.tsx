@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import MainContent from "./MainContent";
-import Footer from "./Footer";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import ContentListPage from "../pages/ContentListPage";
-import ProjectListPage from "../pages/ProjectListPage";
+import ContentListPage from "../pages/Content/ContentListPage";
+import ProjectListPage from "../pages/Project/ProjectListPage";
 import GithubRepos from "../pages/GithubRepos";
 import NewsList from "../pages/NewsList";
+import AuthForm from "../pages/AuthForm";
+import CreateProjectPage from "../pages/Project/CreateProjectpage";
+import ProtectedRoutes from "../components/Auth/ProtectedRoutes";
+import HomePage from "../pages/HomePage";
+import CreateContentPage from "../pages/Content/CreateContentPage";
 
 function PortfolioLayout() {
     const [sidebarOpen, setSidebarOpen] = useState(true); // default open on desktop
@@ -28,10 +32,24 @@ function PortfolioLayout() {
                     <div className="flex-1">
                         <Routes>
                             <Route element={<MainContent />}>
+                                <Route path="/" element={<HomePage/>} />
                                 <Route path="content" element={<ContentListPage />} />
                                 <Route path="projects" element={<ProjectListPage />} />
                                 <Route path="repos" element={<GithubRepos />} />
                                 <Route path="news" element={<NewsList />} />
+                                <Route path="login" element={<AuthForm />} />
+                                <Route path="create-project"
+                                       element={
+                                    <ProtectedRoutes>
+                                        <CreateProjectPage />
+                                    </ProtectedRoutes>
+                                    }/>
+                                <Route path="create-content"
+                                       element={
+                                    <ProtectedRoutes>
+                                        <CreateContentPage />
+                                    </ProtectedRoutes>
+                                    }/>
                             </Route>
                         </Routes>
                     </div>
