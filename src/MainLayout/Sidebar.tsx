@@ -6,6 +6,7 @@ import { useAuth } from "../components/Auth/AuthContext";
 interface SidebarProps {
     isOpen: boolean;
     onClose: () => void;
+    className: string;
 }
 
 function Sidebar({ isOpen, onClose }: SidebarProps) {
@@ -24,7 +25,7 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
                 onClick={onClose}
                 className="absolute top-4 right-4 p-2 rounded-lg bg-white/20 hover:bg-white/30 md:hidden cursor-pointer"
             />
-
+            
             {/* Logo & Title */}
             <div className="flex items-center gap-3 px-6 pt-8">
                 <img src="/assets/images/P.png" alt="Logo" className="w-12 h-12 rounded-lg shadow-md" />

@@ -1,6 +1,5 @@
 @import "tailwindcss";
-
-
+@custom-variant dark (&:where(.dark, .dark *));
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -14,6 +13,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+html {
+    @apply transition-colors duration-300;
 }
 
 a {

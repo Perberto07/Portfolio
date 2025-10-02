@@ -8,12 +8,15 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import PortfolioLayout from "./MainLayout/PortfolioLayout";
 import { AuthProvider } from './components/Auth/AuthContext';
+import { ThemeProvider } from './components/Theme/ThemeContext';
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
         <BrowserRouter>
             <AuthProvider>
-                <PortfolioLayout />
+                <ThemeProvider>
+                    <PortfolioLayout />
+                </ThemeProvider>
             </AuthProvider>
         </BrowserRouter>
     </React.StrictMode>

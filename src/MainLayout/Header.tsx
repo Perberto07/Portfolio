@@ -1,31 +1,39 @@
-import { Menu } from "lucide-react";
+﻿import { Menu } from "lucide-react";
 import WeatherWidget from "../components/Widgets/WeatherWidget";
+import ThemeToggle from "../components/Theme/ThemeToggle";
 
-function Header({ onSidebarToggle }: { onSidebarToggle: () => void }) {
+interface HeaderProps {
+    onSidebarToggle: () => void;
+    className?: string;   // ✅ allow className
+}
+function Header({ onSidebarToggle, className = "" }: HeaderProps) {
     return (
-        <header className="bg-white shadow-md relative overflow-hidden">
-            {/* Subtle gradient background overlay */}
-            {/*<div className="absolute inset-0 bg-gradient-to-r from-blue-100/40 to-transparent"></div>*/}
-
-            <div className="container mx-auto px-10 py-4 relative z-10">
+        <header
+            className={`bg-white dark:bg-gray-800 shadow-md relative overflow-hidden transition-colors ${className}`}
+        >
+            <div className="container bg-white dark:bg-gray-800 mx-auto px-10 py-4 relative z-10">
                 <div className="flex items-center justify-between">
 
                     {/* Sidebar Toggle + Logo/Title */}
                     <div className="flex items-center gap-3">
-                        <button
+                        <div
                             onClick={onSidebarToggle}
-                            className="p-2 rounded-lg hover:bg-blue-100 transition"
+                            className="p-2 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-600 transition"
                         >
-                            <Menu size={24} className="text-blue-700" />
-                        </button>
-                        <h3 className="text-xl md:text-2xl font-bold text-blue-800">
+                            <Menu
+                                size={24}
+                                className="text-blue-700 dark:text-blue-300 transition-colors"
+                            />
+                        </div>
+                        <h3 className="text-xl md:text-2xl font-bold text-blue-800 dark:text-blue-200 transition-colors">
                             Junior Developer
                         </h3>
                     </div>
 
-                    {/* Weather Widget */}
-                    <div className="hidden sm:block">
+                    {/* Weather Widget + Theme Toggle */}
+                    <div className="hidden sm:flex items-center gap-3">
                         <WeatherWidget />
+                        <ThemeToggle />
                     </div>
                 </div>
             </div>
