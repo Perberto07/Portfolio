@@ -1,9 +1,9 @@
-export interface TechStackDto {
+export type TechStackDto = {
     name: string;
     description: string;
 }
 
-export interface CreateProjectDto {
+export type CreateProjectDto = {
     title: string;
     description: string;
     videoLink: string;

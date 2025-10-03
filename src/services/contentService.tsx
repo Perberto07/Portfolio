@@ -3,7 +3,6 @@ import type { CreateContentDto, GetContentDto } from "../dtos/content.dto"
 
 //const API_URL = "https://localhost:7295/api/content";
 const API_URL = "https://fullporfolio.onrender.com/api/content";
-//const API_URL = "https://a3467ca03cff.ngrok-free.app/api/content";
 
 
 const api = axios.create({

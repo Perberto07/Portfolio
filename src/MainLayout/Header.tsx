@@ -31,9 +31,9 @@ function Header({ onSidebarToggle, className = "" }: HeaderProps) {
                     </div>
 
                     {/* Weather Widget + Theme Toggle */}
-                    <div className="hidden sm:flex items-center gap-3">
-                        <WeatherWidget />
+                    <div className="hidden sm:flex items-center gap-5">
                         <ThemeToggle />
+                        <WeatherWidget />
                     </div>
                 </div>
             </div>

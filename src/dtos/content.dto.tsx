@@ -1,9 +1,9 @@
-export interface ItemDto {
+export type  ItemDto = {
     header: string;
     textContent: string;
 }
 
-export interface CreateContentDto {
+export type CreateContentDto = {
     name: string
     items: ItemDto[];
 }

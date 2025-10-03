@@ -1,4 +1,4 @@
-import { Home, User, FolderKanban, Newspaper, X, File, Github, Mail, Twitter, LogInIcon, FileCog, FolderCog, LogOutIcon } from "lucide-react";
+import { Home, User, FolderKanban, Newspaper, X, File, Github, Mail, Twitter, LogInIcon, FileCog, FolderCog, LogOutIcon, UserPlus } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import GradPic from "../assets/images/GradPic.JPG";
 import { useAuth } from "../components/Auth/AuthContext";
@@ -77,6 +77,9 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
                         </NavLink>
                         <NavLink to="/create-content" className="flex items-center gap-3 px-3 py-2 rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition">
                             <FileCog size={18} /> Create Content
+                        </NavLink>
+                        <NavLink to="/register" className="flex items-center gap-3 px-3 py-2 rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition">
+                            <UserPlus size={18} /> Register User
                         </NavLink>
                         <div
                             onClick={logout}

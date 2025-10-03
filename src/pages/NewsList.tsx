@@ -155,8 +155,8 @@ export default function NewsList() {
                 </Swiper>
 
                 {/* Custom Navigation Buttons */}
-                <div className="swiper-button-prev !text-blue-600 !bg-white !shadow-lg !rounded-full !w-12 !h-12 after:!text-lg !border !border-gray-200 hover:!bg-blue-50 !transition-colors !duration-200"></div>
-                <div className="swiper-button-next !text-blue-600 !bg-white !shadow-lg !rounded-full !w-12 !h-12 after:!text-lg !border !border-gray-200 hover:!bg-blue-50 !transition-colors !duration-200"></div>
+                {/*<div className="swiper-button-prev !text-blue-600 !bg-white !shadow-lg !rounded-full !w-12 !h-12 after:!text-lg !border !border-gray-200 hover:!bg-blue-50 !transition-colors !duration-200"></div>*/}
+                {/*<div className="swiper-button-next !text-blue-600 !bg-white !shadow-lg !rounded-full !w-12 !h-12 after:!text-lg !border !border-gray-200 hover:!bg-blue-50 !transition-colors !duration-200"></div>*/}
             </div>
         </div>
     );
