@@ -1,5 +1,5 @@
 ﻿// ReusableForm.tsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export type FieldConfig = {
     name: string;
@@ -22,6 +22,7 @@ export type ReusableFormProps<
     title: string;
     parentFields: FieldConfig[];
     childConfig?: ChildConfig;
+    initialData?: ParentData;
     onSubmit: ChildData extends never
     ? (data: ParentData) => Promise<void>
     : (data: ParentData & { [key: string]: ChildData[] }) => Promise<void>;
@@ -35,6 +36,7 @@ const ReusableForm = <
     title,
     parentFields,
     childConfig,
+    initialData,
     onSubmit,
 }: ReusableFormProps<ParentData, ChildData>) => {
 
@@ -80,6 +82,21 @@ const ReusableForm = <
         setChildList([]);
         setChildData({} as ChildData);
     };
+
+    useEffect(() => {
+        if (initialData) {
+            setFormData(initialData as ParentData);
+
+            if (childConfig) {
+                // Safely check if initialData has the child array property
+                const childItems = (initialData as Record<string, unknown>)[childConfig.name];
+                if (Array.isArray(childItems)) {
+                    setChildList(childItems as ChildData[]);
+                }
+            }
+        }
+    }, [initialData, childConfig]);
+
 
     return (
         <div className="p-6 max-w-xl mx-auto transition-colors duration-300 bg-gray-50 dark:bg-gray-900 rounded-lg shadow-lg">

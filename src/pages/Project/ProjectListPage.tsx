@@ -3,12 +3,18 @@ import { Modal } from "../../components/Modal/Modal";
 import type { GetProjectDto } from "../../dtos/project.dto";
 import { useService } from "../../hooks/UseService";
 import { getProjects } from "../../services/projectService";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../components/Auth/AuthContext";
 
 export default function ProjectListPage() {
     const { data: projects, loading, error } = useService<GetProjectDto[]>(getProjects);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedStacks, setSelectedStacks] = useState<GetProjectDto["techStacks"]>([]);
+    const navigate = useNavigate();
+    const { isAuthenticated } = useAuth();
+
+    
 
     const openModal = (techStacks: GetProjectDto["techStacks"]) => {
         setSelectedStacks(techStacks || []);
@@ -83,10 +89,19 @@ export default function ProjectListPage() {
                                 {/* Button */}
                                 <button
                                     onClick={() => openModal(project.techStacks)}
-                                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 rounded-lg transition-colors"
+                                    className="px-4 py-2 text-sm font-medium w-full text-white bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 rounded-lg transition-colors"
                                 >
                                     Tech Stacks
                                 </button>
+
+                                {isAuthenticated && (
+                                    <button
+                                        onClick={() => navigate(`/projects/${project.id}/edit`)}
+                                        className="mt-2 px-4 py-2 text-sm font-medium w-full text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors"
+                                    >
+                                        Edit
+                                    </button>
+                                )}
                             </div>
                         </div>
                     ))}
@@ -115,7 +130,32 @@ export default function ProjectListPage() {
                     ))}
                 </div>
             </Modal>
+
+            
         </div>
 
     );
 }
+//const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+//const [selectedProject, setSelectedProject] = useState<GetProjectDto | null>(null);
+//<button
+//    onClick={() => {
+//        setSelectedProject(project);
+//        setIsEditModalOpen(true);
+//    }}
+//    className="ml-2 px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors"
+//>
+//    Edit
+//</button>
+{/*<Modal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>*/ }
+{/*    {selectedProject && (*/ }
+{/*        <UpdateProject*/ }
+{/*            project={selectedProject}*/ }
+{/*            onSuccess={() => {*/ }
+{/*                setIsEditModalOpen(false);*/ }
+{/*                window.location.reload(); // refresh to see updates (or re-fetch)*/ }
+{/*            }}*/ }
+{/*        />*/ }
+{/*    )}*/ }
+{/*</Modal>*/ }
+//import UpdateProject from "./UpdateProject";

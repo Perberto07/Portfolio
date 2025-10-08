@@ -1,4 +1,5 @@
 export type TechStackDto = {
+    id: number;
     name: string;
     description: string;
 }
@@ -11,11 +12,12 @@ export type CreateProjectDto = {
 }
 
 export interface GetTechStackDto {
-    id: Int16Array;
+    id: number;
     name: string;
     description: string;
 }
 export interface GetProjectDto {
+    id: number;
     title: string;
     description: string;
     videoLink: string;

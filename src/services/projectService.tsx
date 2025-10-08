@@ -21,3 +21,13 @@ export const getProjects = async (): Promise<GetProjectDto[]> => {
     const response = await api.get(`${API_URL}/Get-Project`);
     return response.data;
 };
+
+export const getProjectById = async (projectId: number): Promise<GetProjectDto[]> => {
+    const response = await api.get(`${API_URL}/${projectId}/project`);
+    return response.data;
+};
+
+export const updateProject = async (projectId: number, project: CreateProjectDto) => {
+    const response = await api.put(`${API_URL}/${ projectId }/update`, project);
+    return response.data;
+};

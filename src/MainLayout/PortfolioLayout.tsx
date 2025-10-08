@@ -13,6 +13,7 @@ import HomePage from "../pages/HomePage";
 import CreateContentPage from "../pages/Content/CreateContentPage";
 import AuthLogin from "../pages/Auth/AuthLogin";
 import AuthRegister from "../pages/Auth/AuthRegister";
+import ProjectEditPage from "../pages/Project/ProjectEditPage";
 
 function PortfolioLayout() {
     const [sidebarOpen, setSidebarOpen] = useState(true); // default open on desktop
@@ -55,6 +56,15 @@ function PortfolioLayout() {
                                         </ProtectedRoutes>
                                     }
                                 />
+                                <Route
+                                    path="/projects/:id/edit"
+                                    element={
+                                        <ProtectedRoutes>
+                                            <ProjectEditPage />
+                                        </ProtectedRoutes>
+                                    }
+                                />
+                             
                                 <Route
                                     path="create-content"
                                     element={
