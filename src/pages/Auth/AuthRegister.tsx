@@ -21,7 +21,7 @@ const AuthRegister: React.FC = () => {
                 alert("Register Success");
             }
         } catch (error) {
-            console.log(error);z
+            console.log(error);
         }
     };
 
